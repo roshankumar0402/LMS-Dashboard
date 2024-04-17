@@ -1,0 +1,11 @@
+<div class="header">
+  <h2 mat-dialog-title>Confirm</h2>
+  <button mat-icon-button (click)="onClose(false)">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>Are you sure you want to perform the action?</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button (click)="onClose(false)">No</button>
+  <button mat-raised-button (click)="onClose(true)" color="primary">Yes</button>
+</div>

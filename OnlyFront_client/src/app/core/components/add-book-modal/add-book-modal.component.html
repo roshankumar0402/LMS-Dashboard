@@ -1,0 +1,134 @@
+<div class="add-book-form">
+  <form [formGroup]="addBookForm" (ngSubmit)="addBook()">
+    <mat-card>
+      <mat-toolbar color="primary" class="add-book-toolbar">
+        <span>Add Book Details</span>
+        <span class="spacer"></span>
+        <mat-icon (click)="onNoClick()" class="closeBtn">close</mat-icon>
+      </mat-toolbar>
+      <mat-dialog-content class="formfields">
+        <mat-form-field class="form-field">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Title"
+            formControlName="title"
+          />
+          @if(addBookForm.get('title')?.invalid){
+          <mat-error>{{ getErrorMessage("title") }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Author</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Author"
+            formControlName="author"
+          />
+          @if(addBookForm.get('author')?.invalid){
+          <mat-error>{{ getErrorMessage("author") }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Description"
+            formControlName="desc"
+          />
+          @if(addBookForm.get('desc')?.invalid){
+          <mat-error>{{ getErrorMessage("desc") }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Genre</mat-label>
+          <mat-select formControlName="genre">
+            <mat-option value="Romance">Romance</mat-option>
+            <mat-option value="Science Fiction">Science Fiction</mat-option>
+            <mat-option value="Fantasy">Fantasy</mat-option>
+          </mat-select>
+          @if(addBookForm.get('genre')?.invalid){
+          <mat-error>{{ getErrorMessage("genre") }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Price"
+            formControlName="price"
+          />
+          @if(addBookForm.get('price')?.invalid){
+          <mat-error>{{ getErrorMessage("price") }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Pages</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Pages"
+            formControlName="pages"
+          />
+          @if(addBookForm.get('pages')?.invalid){
+          <mat-error>{{ getErrorMessage("pages") }}</mat-error>
+          }
+        </mat-form-field>
+        <h3>Rating</h3>
+        <!-- <mat-form-field class="form-field">
+          <mat-label>Rating</mat-label> -->
+        <!-- <input
+            matInput
+            type="number"
+            placeholder="Rating 1-5"
+            formControlName="rating"
+            min="1"
+            max="5"
+          /> -->
+        <div id="container">
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 5"
+            (click)="setRating(5)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 4"
+            (click)="setRating(4)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 3"
+            (click)="setRating(3)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 2"
+            (click)="setRating(2)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 1"
+            (click)="setRating(1)"
+          ></fa-icon>
+        </div>
+        <!-- @if(addBookForm.get('rating')?.invalid){
+          <mat-error>{{ getErrorMessage("rating") }}</mat-error>
+          } -->
+        <!-- </mat-form-field> -->
+      </mat-dialog-content>
+      @if(message){
+      <button type="button" mat-raised-button class="success">
+        {{ message }}
+      </button>
+      }
+      <mat-dialog-actions>
+        <button mat-button type="submit">Add</button>
+      </mat-dialog-actions>
+    </mat-card>
+  </form>
+</div>

@@ -1,0 +1,109 @@
+<button
+  class="goHomeButton"
+  mat-raised-button
+  color="primary"
+  (click)="redirectToHome()"
+  matTooltip="Go to Home Page"
+>
+  <mat-icon style="margin: 0">home</mat-icon>
+</button>
+
+<mat-card class="lightSpacer">
+  <mat-card-header></mat-card-header>
+  <mat-card-content class="lightSpacer">
+    <table matSort mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="title">
+        <th mat-sort-header="title" mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+      <ng-container matColumnDef="author">
+        <th mat-sort-header="author" mat-header-cell *matHeaderCellDef>
+          Author
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.author }}</td>
+      </ng-container>
+      <ng-container matColumnDef="desc">
+        <th mat-sort-header="desc" mat-header-cell *matHeaderCellDef>
+          Description
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.desc }}</td>
+      </ng-container>
+      <ng-container matColumnDef="genre">
+        <th mat-sort-header="genre" mat-header-cell *matHeaderCellDef>Genre</th>
+        <td mat-cell *matCellDef="let element">{{ element.genre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-sort-header="price" mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+      <ng-container matColumnDef="pages">
+        <th mat-sort-header="pages" mat-header-cell *matHeaderCellDef>Pages</th>
+        <td mat-cell *matCellDef="let element">{{ element.pages }}</td>
+      </ng-container>
+      <ng-container matColumnDef="rating">
+        <th mat-sort-header="rating" mat-header-cell *matHeaderCellDef>
+          Rating
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.rating }}</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        @if(key!='archives'){
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="btns"
+            mat-raised-button
+            [ngStyle]="{
+              'background-color':
+                element.favorite == true ? '#673AB7' : 'white',
+              color: element.favorite == true ? 'white' : 'black',
+              'text-align': 'center'
+            }"
+            (click)="toggleFav($event, element.id)"
+            matTooltip="Mark/Unmark Book as Favorite"
+          >
+            <mat-icon class="icon">star</mat-icon>
+          </button>
+          <button
+            class="btns"
+            mat-raised-button
+            [ngStyle]="{
+              'background-color': 'red',
+              color: 'white',
+              'text-align': 'center'
+            }"
+            (click)="toggleArchive($event, element.id)"
+            matTooltip="Delete the book"
+          >
+            <mat-icon class="icon">delete</mat-icon>
+          </button>
+        </td>
+        } @if(key == 'archives'){
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="btns"
+            mat-raised-button
+            [ngStyle]="{
+              'background-color': 'green',
+              color: 'white',
+              'text-align': 'center'
+            }"
+            (click)="removeArchive($event, element.id)"
+            matTooltip="Restore the book"
+          >
+            <mat-icon class="icon">delete</mat-icon>
+          </button>
+        </td>
+        }
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columns"
+        (click)="openModal(row)"
+      ></tr>
+    </table>
+  </mat-card-content>
+  <mat-card-footer></mat-card-footer>
+</mat-card>

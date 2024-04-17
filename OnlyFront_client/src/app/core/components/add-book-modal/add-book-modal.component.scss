@@ -1,0 +1,39 @@
+.formfields{
+    display: grid;
+    width: 30vw;
+}
+.spacer {
+    flex: 1 1 auto;
+  }
+  .closeBtn{
+    &:hover{
+        cursor: pointer;
+    }
+  }
+
+  #container{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    fa-icon{
+        color: grey;
+        font-size: 24px;
+        cursor: pointer;
+    
+        &.rated,
+        &:hover,
+        &:hover ~ fa-icon{
+            color: gold;
+        }
+        transition: color 0.3s ease-in-out;
+    }
+}
+
+.success{
+    background-color: rgb(28, 189, 28);
+    color: white;
+    width: 15vw;
+    display: inline-block;
+    margin-left: 30px;
+    padding: 15px;
+}

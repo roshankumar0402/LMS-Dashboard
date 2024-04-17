@@ -1,0 +1,41 @@
+<div class="login-form">
+  <mat-card>
+    <mat-toolbar color="primary" class="login-toolbar"
+      ><span>Login</span></mat-toolbar
+    >
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
+      <mat-form-field class="form-field custom">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" />
+        @if (loginForm.get('username')?.invalid) {
+        <mat-error>{{ getErrorMessage("username") }} </mat-error>
+        }
+      </mat-form-field>
+      @if(tag == 'u'){
+      <p style="color: red">{{ errorMessage }}</p>
+      }
+      <mat-form-field class="form-field custom">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        @if (loginForm.get('password')?.invalid ) {
+        <mat-error
+          >{{ getErrorMessage("password") }}
+          <p></p
+        ></mat-error>
+        }
+      </mat-form-field>
+      @if(tag == 'p'){
+      <p style="color: red">{{ errorMessage }}</p>
+      }
+      <button mat-raised-button color="primary" type="submit" class="loginBtn">
+        Login
+      </button>
+    </form>
+    <!-- <h1>{{ errorMessage }}</h1> -->
+  </mat-card>
+</div>
