@@ -1,0 +1,129 @@
+<div class="add-book-form">
+  <form [formGroup]="addBookForm" (ngSubmit)="addBook()">
+    <mat-card>
+      <mat-toolbar color="primary" class="add-book-toolbar">
+        <span>Book Details</span>
+        <span class="spacer"></span>
+        <mat-icon (click)="onNoClick()" class="closeBtn">close</mat-icon>
+      </mat-toolbar>
+      <mat-dialog-content class="formfields">
+        <mat-form-field class="form-field">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Title"
+            formControlName="title"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Author</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Author"
+            formControlName="author"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Description"
+            formControlName="desc"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Genre</mat-label>
+          <mat-select formControlName="genre">
+            <mat-option value="Romance">Romance</mat-option>
+            <mat-option value="Science Fiction">Science Fiction</mat-option>
+            <mat-option value="Fantasy">Fantasy</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Price"
+            formControlName="price"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Pages</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Pages"
+            formControlName="pages"
+          />
+        </mat-form-field>
+        <h3>Rating</h3>
+        <div id="container">
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 5"
+            (click)="setRating(5)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 4"
+            (click)="setRating(4)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 3"
+            (click)="setRating(3)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 2"
+            (click)="setRating(2)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="star"
+            [class.rated]="rating >= 1"
+            (click)="setRating(1)"
+          ></fa-icon>
+        </div>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button
+          class="btns"
+          type="button"
+          mat-raised-button
+          [ngStyle]="{
+            'background-color': fav == true ? '#673AB7' : 'white',
+            color: fav == true ? 'white' : 'black',
+            'text-align': 'center'
+          }"
+          (click)="addFav($event)"
+          matTooltip="Mark/Unmark Book as Favorite"
+        >
+          <mat-icon class="icon">star</mat-icon>
+        </button>
+        <button
+          class="btns"
+          type="button"
+          mat-raised-button
+          style="background-color: red; color: white; text-align: center"
+          (click)="addArch($event)"
+          matTooltip="Delete the book"
+        >
+          <mat-icon class="icon">delete</mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <button
+          mat-raised-button
+          type="submit"
+          style="background-color: green; color: white"
+          [disabled]="addBookForm.invalid"
+        >
+          Update
+        </button>
+      </mat-dialog-actions>
+    </mat-card>
+  </form>
+</div>

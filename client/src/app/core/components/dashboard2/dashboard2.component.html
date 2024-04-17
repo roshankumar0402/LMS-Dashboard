@@ -1,0 +1,50 @@
+<button
+  class="goHomeButton"
+  mat-raised-button
+  color="primary"
+  (click)="redirectToHome()"
+  matTooltip="Go to Home Page"
+>
+  <mat-icon style="margin: 0">home</mat-icon>
+</button>
+
+<div>
+  <table>
+    <tr>
+      <td>
+        <ngx-charts-line-chart
+          [results]="lineChartData"
+          [view]="view"
+          [scheme]="colorScheme"
+          [legend]="legend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxis]="xAxis"
+          [yAxis]="yAxis"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [timeline]="timeline"
+        >
+        </ngx-charts-line-chart>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ngx-charts-pie-chart
+          [results]="PieChartData"
+          [view]="view"
+          [scheme]="colorScheme"
+          [gradient]="gradient"
+          [legend]="showLegend"
+          [legendPosition]="legendPosition"
+          [labels]="showLabels"
+          [doughnut]="isDoughnut"
+        >
+          <!--(select)="onSelect($event)"
+          (activate)="onActivate($event)"
+          (deactivate)="onDeactivate($event)"-->
+        </ngx-charts-pie-chart>
+      </td>
+    </tr>
+  </table>
+</div>

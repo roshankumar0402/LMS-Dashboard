@@ -1,0 +1,30 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="app-logo">
+      <mat-icon>library_books</mat-icon>
+    </button>
+    <span class="lms-text">LMS</span>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="profileMenu"
+      matTooltip="View Profile"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #profileMenu="matMenu">
+      <button class="lms-text" mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span class="lms-text">{{ user.name }}</span>
+      </button>
+      <button class="lms-text" mat-menu-item>
+        <mat-icon>email</mat-icon>
+        <span class="lms-text">{{ user.email }}</span>
+      </button>
+      <button mat-menu-item (click)="signOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</p>

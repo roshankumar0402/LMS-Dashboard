@@ -1,0 +1,72 @@
+<div class="login-form">
+  <mat-card>
+    <mat-toolbar color="primary" class="login-toolbar"
+      ><span>{{ toolbarName }}</span></mat-toolbar
+    >
+    @if(toolbarName === 'Login/Register'){
+    <div class="options">
+      <button
+        class="btns"
+        mat-raised-button
+        style="background-color: #673ab7; color: white; text-align: center"
+        (click)="toggleName($event, 'Register')"
+        matTooltip="Register"
+      >
+        Register
+      </button>
+      <button
+        class="btns"
+        mat-raised-button
+        style="background-color: red; color: white; text-align: center"
+        (click)="toggleName($event, 'Login')"
+        matTooltip="Login"
+      >
+        Login
+      </button>
+    </div>
+    } @if(toolbarName==='Login' || toolbarName ==='Register'){
+    <form [formGroup]="loginForm" (ngSubmit)="action()" class="form">
+      <mat-form-field class="form-field custom">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" />
+        @if (loginForm.get('username')?.invalid) {
+        <mat-error>{{ getErrorMessage("username") }} </mat-error>
+        }
+      </mat-form-field>
+      @if(tag == 'u'){
+      <p style="color: red">{{ errorMessage }}</p>
+      }
+      <mat-form-field class="form-field custom">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        @if (loginForm.get('password')?.invalid ) {
+        <mat-error
+          >{{ getErrorMessage("password") }}
+          <p></p
+        ></mat-error>
+        }
+      </mat-form-field>
+      @if(tag == 'p'){
+      <p style="color: red">{{ errorMessage }}</p>
+      }
+      <button mat-raised-button color="primary" type="submit" class="loginBtn">
+        {{ toolbarName }}
+      </button>
+    </form>
+    <button
+      mat-raised-button
+      color="secondary"
+      type="submit"
+      class="loginBtn"
+      (click)="goBack()"
+    >
+      Go back
+    </button>
+    }
+  </mat-card>
+</div>

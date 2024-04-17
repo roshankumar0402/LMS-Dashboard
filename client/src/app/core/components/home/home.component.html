@@ -1,0 +1,28 @@
+<div class="main">
+  @for(item of genres; track item.name){
+  <div class="genres-container">
+    <mat-card class="genre card">
+      <button mat-raised-button (click)="genreAction(item.name)" class="card">
+        <mat-card-header>
+          <mat-icon>{{ item.icon }}</mat-icon>
+        </mat-card-header>
+        <mat-card-content>
+          <h3>{{ item.name }}</h3>
+        </mat-card-content>
+      </button>
+    </mat-card>
+  </div>
+  }
+  <div class="genres-container">
+    <mat-card class="genre card">
+      <button mat-raised-button (click)="addNewGen()" class="card">
+        <mat-card-header>
+          <mat-icon>add_circle</mat-icon>
+        </mat-card-header>
+        <mat-card-content>
+          <h3>New Genre</h3>
+        </mat-card-content>
+      </button>
+    </mat-card>
+  </div>
+</div>

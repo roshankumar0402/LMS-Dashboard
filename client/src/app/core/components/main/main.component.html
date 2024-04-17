@@ -1,0 +1,109 @@
+<app-navbar />
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" class="sidenav">
+    <mat-list class="list">
+      <mat-list-item>
+        <button
+          class="list-items"
+          mat-stroked-button
+          color="primary"
+          (click)="openDialog()"
+        >
+          Add Book
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button
+          class="list-items"
+          mat-stroked-button
+          color="primary"
+          [matMenuTriggerFor]="genresMenu"
+          (click)="redirectToHome()"
+        >
+          Genres
+        </button>
+        <mat-menu #genresMenu="matMenu">
+          @for(gen of genres; track gen.name){
+          <button
+            mat-menu-item
+            (click)="genreAction(gen.name)"
+            class="list-items center"
+          >
+            {{ gen.name }}
+          </button>
+          }@empty {
+          <button mat-menu-item class="list-items center">No genres</button>
+          }
+        </mat-menu>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          class="list-items"
+          mat-stroked-button
+          color="primary"
+          [matMenuTriggerFor]="recentlyViewedMenu"
+          (click)="redirectToHome()"
+        >
+          Recently viewed
+        </button>
+        <mat-menu #recentlyViewedMenu="matMenu">
+          <button
+            mat-menu-item
+            (click)="recent('10')"
+            class="list-items center"
+          >
+            last 10 minutes
+          </button>
+          <button
+            mat-menu-item
+            (click)="recent('1hr')"
+            class="list-items center"
+          >
+            last 1 hour
+          </button>
+          <button
+            mat-menu-item
+            (click)="recent('5hr')"
+            class="list-items center"
+          >
+            last 5 hours
+          </button>
+        </mat-menu>
+      </mat-list-item>
+      <mat-list-item>
+        <button
+          class="list-items"
+          mat-stroked-button
+          color="primary"
+          (click)="goToFavPage()"
+        >
+          Favorites
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button
+          class="list-items"
+          mat-stroked-button
+          color="primary"
+          (click)="goToArchivesPage()"
+        >
+          Archives
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button
+          class="list-items"
+          mat-stroked-button
+          color="primary"
+          (click)="goToDashboard()"
+        >
+          Dashboard
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
